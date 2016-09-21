@@ -23,6 +23,7 @@
     "eslint-plugin-react": "latest",
     "node-sass": "latest",
     "react-hot-loader": "latest",
+    "react-router": "latest",
     "sass-loader": "latest",
     "style-loader": "latest",
     "webpack": "^1.12.2",
