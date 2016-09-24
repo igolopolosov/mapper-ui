@@ -1,13 +1,14 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+var http = require('http');
+var path = require('path');
 
-new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
-  hot: true,
-  historyApiFallback: true
-}).listen(9091, 'localhost', function (err, result) {
-  if (err) {
-    return console.log(err);
-  }
+var express = require('express');
+
+var router = express();
+var server = http.createServer(router);
+
+router.use(express.static(path.resolve(__dirname, 'client')));
+
+server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
+  var addr = server.address();
+  console.log("Server started at", addr.address + ":" + addr.port);
 });
