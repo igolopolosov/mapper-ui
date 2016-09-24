@@ -1,15 +1,17 @@
 // const url='http://localhost:9090/map';
 const url='https://mapper-konig-hack.herokuapp.com/map';
 
-export const sendData = (readyTpl, readyData, onComplete) => {
+export const sendData = (readyTpl, readyData, onUploadProgress, onDownloadProgress, onComplete) => {
   let xhr = new XMLHttpRequest();
 
   xhr.upload.onprogress = event => {
     console.log('Upload progress: ', event.loaded + ' / ' + event.total);
+    onUploadProgress(event.loaded / event.total);
   }
 
   xhr.onprogress = event => {
     console.log('Download progress: ', event.loaded + ' / ' + event.total);
+    onDownloadProgress(event.loaded / event.total);
   }
 
   xhr.onload = xhr.onerror = () => {

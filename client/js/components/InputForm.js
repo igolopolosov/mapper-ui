@@ -2,7 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Dropzone from 'react-dropzone';
 
-import * as actions from '../actions/dummy';
+import * as uploadActions from '../actions/upload';
+import * as formActions from '../actions/form';
 import FileStatus from './FileStatus';
 import * as api from '../api/api';
 
@@ -21,14 +22,15 @@ class InputForm extends React.Component {
   }
 
   onFileDrop(files) {
+    const {dispatch} = this.props;
     files.forEach((file) => {
       if (this.checkFiletype(file.name, templateFiletypes)) {
         console.log('Template file: ', file);
-        this.props.dispatch(actions.setTemplateFile(file));
+        dispatch(formActions.setTemplateFile(file));
       }
       else if (this.checkFiletype(file.name, dataFiletypes)) {
         console.log('Data file: ', file);
-        this.props.dispatch(actions.setDataFile(file));
+        dispatch(formActions.setDataFile(file));
       }
       else {
         console.log('Unknown file type: ', file);
@@ -45,11 +47,18 @@ class InputForm extends React.Component {
   }
 
   submit() {
-    const {templateFile, dataFile} = this.props;
+    const {templateFile, dataFile, dispatch} = this.props;
 
-    const onComplete = ok => alert(ok ? ':)' : ':(');
-    // alert('Template file: ' + templateFile.name + '\nData file: ' + dataFile.name);
-    api.sendData(templateFile, dataFile, onComplete);
+    const onUploadProgress = progress =>
+      dispatch(uploadActions.updateUploadProgress(progress));
+    const onDownloadProgress = progress =>
+      dispatch(uploadActions.updateDownloadProgress(progress));
+    const onComplete = ok => {
+      dispatch(uploadActions.finishUpload());
+      console.log(ok ? ':)' : ':(');
+    }
+
+    api.sendData(templateFile, dataFile, onUploadProgress, onDownloadProgress, onComplete);
   }
 
   render() {
@@ -77,7 +86,7 @@ class InputForm extends React.Component {
 
 export default connect(
   state => ({
-    templateFile: state.dummy.templateFile,
-    dataFile: state.dummy.dataFile
+    templateFile: state.form.templateFile,
+    dataFile: state.form.dataFile
   })
 )(InputForm);

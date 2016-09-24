@@ -1,11 +1,19 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import Header from './Header';
 import InputForm from './InputForm';
+import UploadStats from './UploadStats';
 
-export default () => (
+const App = ({uploadState}) => (
   <div>
     <Header />
-    <InputForm endpoint="http://localhost:9090/map" />
+    {uploadState === undefined ? <InputForm /> : <UploadStats />}
   </div>
 );
+
+export default connect(
+  state => ({
+    uploadState: state.upload.state
+  })
+)(App);
