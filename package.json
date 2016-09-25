@@ -6,9 +6,8 @@
   "repository": "localhost",
   "author": "Mapper Team <id.ilych@gmail.com>",
   "scripts": {
-    "start": "npm run webpack & npm run serve",
+    "start": "node_modules/.bin/webpack-dev-server --content-base client/",
     "webpack": "./node_modules/.bin/webpack",
-    "serve": "node server.js",
     "test": "mocha --compilers js:babel-register client/**/*.test.js"
   },
   "dependencies": {
@@ -33,6 +32,7 @@
     "deep-freeze": "0.0.1",
     "expect": "^1.20.2",
     "mocha": "^3.0.2",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
   }
 }
