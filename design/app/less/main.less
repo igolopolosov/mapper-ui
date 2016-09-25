@@ -1,0 +1,314 @@
+@back: url('./bottompattern.svg');//#80a9c1;
+
+// circle borders
+@lrBorderC: #b73939;//#da2929;
+@tbBorderC: #477089;
+@lrBorderS: 30px;
+@tbBorderS: 30px;
+
+@textBackColor: #b73939;//#da2929;
+@textBackAnim: #a52b2b;
+
+@circleSize: 275px;
+@circleInsideRadius: @circleSize / 2;
+
+body {
+   background: @back;
+   background: linear-gradient(to top right, @back, @back);
+   min-width: 500px;
+   min-height: 560px;
+   overflow: hidden;
+
+   height: 100vh;
+   margin: 0;
+
+   nav {
+     position: fixed;
+     width: 100%;
+     left: 0;
+     top: 0;
+     z-index: 999999;
+
+     background: linear-gradient(to top right, #80a9c1, #2b5167);
+     box-sizing: border-box;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+
+     border-bottom: 1px solid white;
+     height: 90px;
+
+     box-shadow: 0 1px 100px 5px #32576d;
+
+     .logo {
+       color: white;
+       display: flex;
+       align-items: center;
+       font-size: 70px;
+
+       margin-left: 20px;
+       // иконка лого начинается
+       @font-face {
+         font-family: 'icomoon';
+         src:  url('fonts/icomoon.eot?c7ji0');
+         src:  url('fonts/icomoon.eot?c7ji0#iefix') format('embedded-opentype'),
+           url('fonts/icomoon.ttf?c7ji0') format('truetype'),
+           url('fonts/icomoon.woff?c7ji0') format('woff'),
+           url('fonts/icomoon.svg?c7ji0#icomoon') format('svg');
+         font-weight: normal;
+         font-style: normal;
+       }
+
+       [class^="icon-"], [class*=" icon-"] {
+         /* use !important to prevent issues with browser extensions that change fonts */
+         font-family: 'icomoon' !important;
+         speak: none;
+         font-style: normal;
+         font-weight: normal;
+         font-variant: normal;
+         text-transform: none;
+         line-height: 1;
+
+         /* Better Font Rendering =========== */
+         -webkit-font-smoothing: antialiased;
+         -moz-osx-font-smoothing: grayscale;
+       }
+
+       .icon-sitemap:before {
+         content: "\e900";
+       }
+       // logo icon end
+
+       .logo__title {
+         color: white;
+         font-family: 'Monoton';
+         font-size: 40px;
+         margin-left: 2px;
+         user-select: none;
+         -webkit-user-select: none;
+       }
+
+       .logo__title:hover {
+         cursor: default;
+       }
+
+     } // end logo
+
+     .links {
+       font-size: 20px;
+       margin-right: 20px;
+       outline: none;
+
+       a {
+         color: white;
+         font-family: 'Noto Sans';
+         text-decoration: none;
+         margin: 10px;
+         user-select: none;
+         -webkit-user-select: none;
+       }
+
+       a:hover, a:focus {
+         border-bottom: 1px solid white;
+         outline: none;
+         cursor: default;
+       }
+     }
+
+   } // end nav
+
+   .dropCircleWrapper {
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+
+  // .dropCircleWrapperActive {
+  //     .dropCircleWrapper;
+
+       .dropCircle {
+
+         font-family: 'Noto Sans', serif;
+         color: white;
+         text-shadow: 0 0 2px #235158;
+         text-align: center;
+         cursor: default;
+         user-select: none;
+         -webkit-user-select: none;
+
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+
+         min-height: 100%;
+
+         .noneLoad {
+           border-radius: 50%;
+           border-top: @tbBorderS double @tbBorderC;
+           border-bottom: @tbBorderS double #345a71;
+           border-left: @lrBorderS double @lrBorderC;
+           border-right: @lrBorderS double @lrBorderC;
+           //
+          //  position: absolute;
+          //  top: 50%;
+          //  left: 50%;
+           position: relative;
+           display: flex;
+           //align-items: center;
+
+           width: @circleSize;
+           height: @circleSize;
+           //
+          //  margin-top: -(@circleSize / 2 + 5);
+          //  margin-left: -(@circleSize / 2 + 5);
+
+           box-shadow: 0 0 70px 10px #32576d;
+
+          //margin-top: 160px;
+          transition: all 0.4s ease-in-out;
+
+           .tlp {
+             background: @textBackColor;
+
+             width: 50%;
+             height: 100%;
+
+             border-top-left-radius: @circleInsideRadius;
+             border-bottom-left-radius: @circleInsideRadius;
+
+             align-self: stretch;
+
+             transition: all 1s linear;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+           }
+
+           .dict {
+             background: @textBackColor;
+
+             width: 50%;
+             height: 100%;
+
+             border-top-right-radius: @circleInsideRadius;
+             border-bottom-right-radius: @circleInsideRadius;
+
+             border-left: 3px solid @tbBorderC;//#5a7377;
+
+             transition: all 1s linear;
+
+             display: flex;
+             align-items: center;
+             justify-content: center;
+
+           }
+         }
+
+         .noneLoadActive {
+           height: @circleSize + 20px;
+           width: @circleSize + 20px;
+          //  margin-top: -(@circleSize / 2 + 15);
+          //  margin-left: -(@circleSize / 2 + 15);
+
+           border-top: (@tbBorderS + 5) double @tbBorderC;
+           border-bottom: (@tbBorderS + 5) double #345a71;
+           border-left: (@lrBorderS + 5) double @lrBorderC;
+           border-right: (@lrBorderS + 5) double @lrBorderC;
+         }
+
+         .noneLoadActive .dictNot {
+           border-top-right-radius: @circleInsideRadius + 25;
+           border-bottom-right-radius: @circleInsideRadius + 25;
+         }
+         .noneLoadActive .tlpNot {
+           border-top-left-radius: @circleInsideRadius + 25;
+           border-bottom-left-radius: @circleInsideRadius + 25;
+         }
+
+         .noneLoadActive .dictNot p,
+         .noneLoadActive .tlpNot p {
+           font-size: 17px;
+           transition: font-size 0.6s linear;
+         }
+         // noneBoth end
+   } // dropCicle
+
+   .submitFiles {
+     width: 85px;
+     height: 85px;
+     background: linear-gradient(to bottom right, #4a738c, #2b5167);
+     border-radius: 50%;
+     color: white;
+
+     margin-left: 29%;
+
+     display: flex;
+     align-content: center;
+     justify-content: center;
+     border: 4px solid @lrBorderC;
+
+     box-shadow: 0 0 35px 10px #32576d;
+
+     position: absolute;
+
+     bottom: -75px;
+     right: -80px;
+
+     span {
+       align-self: center;
+       font-size: 15px;
+     }
+   }
+
+   }
+
+
+   .bottomLine {
+     position:fixed;
+     left: 0;
+     bottom: 0;
+
+     background: #80a9c1;
+
+     width: 100%;
+     height: 20px;
+     border-top: 1px solid white;
+   }
+
+   .aboutScreen {
+     padding-top: 250px;
+     z-index: 0;
+     color: white;
+     font-family: 'Noto Sans';
+     text-decoration: none;
+     margin: 10px;
+     text-align: justify;
+   }
+
+   .faqScreen {
+     color: red;
+     font-family: 'Noto Sans';
+     text-decoration: none;
+     margin: 10px;
+     text-align: justify;
+   }
+
+}
+// animations
+.toBlink {
+  background: @textBackAnim !important;
+}
+
+.load {
+  color: #b73939;
+}
+
+.displayNone {
+  display: none !important;
+}
+
+.display {
+  display: inherit;
+ }
