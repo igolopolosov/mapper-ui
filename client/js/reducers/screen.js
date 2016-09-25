@@ -1,8 +1,8 @@
-export default (state = {}, action) => {
+export default (state = {id: 'HOME'}, action) => {
   switch (action.type) {
     case 'SET_SCREEN':
       return {
-        id
+        id: action.id
       };
     default:
       return state;

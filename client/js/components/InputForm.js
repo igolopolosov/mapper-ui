@@ -65,6 +65,7 @@ class InputForm extends React.Component {
     const onComplete = result => {
       if (result.data !== undefined) {
         saveAs(result.data, "documents.zip");
+        dispatch(formActions.clear());
         dispatch(uploadActions.finishUpload(result.data));
       }
       else {
@@ -82,13 +83,13 @@ class InputForm extends React.Component {
     return (
       <div className="dropCircle animated display">
         <div className="noneLoad">
-          <div className='tlp'>
+          <div className='tlp' style={hasTemplate ? {background: '#477089'} : {}}>
             {hasTemplate
               ? <p>Шаблон:<br/>{templateFile.name}</p>
               : <p>Перетащите<br/>шаблон ({templateFiletypes.join(',')})</p>
             }
           </div>
-          <div className='dict'>
+          <div className='dict' style={hasData ? {background: '#477089'} : {}}>
             {hasData
               ? <p>Данные:<br/>{dataFile.name}</p>
               : <p>Перетащите<br/>данные ({dataFiletypes.join(',')})</p>

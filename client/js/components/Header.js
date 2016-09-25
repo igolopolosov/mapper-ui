@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/screen';
 
 const LOGO="MAPPER".split("");
+const ANIMATION_TICK = 200;
 
 class Header extends React.Component {
 
@@ -13,13 +14,11 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
-    var timer=setInterval(this.tick.bind(this), 800);
+    var timer=setInterval(this.tick.bind(this), ANIMATION_TICK);
     this.setState({timer});
   }
 
   componentWillUnmount() {
-    console.log('componentWillUnmount');
     clearInterval(this.state.timer);
   }
 
@@ -27,7 +26,6 @@ class Header extends React.Component {
     var count = this.state.count || 0;
     count = (count + 1) % (2 * LOGO.length);
     this.setState({count});
-    console.log(count);
   }
 
   componentWillUpdate() {
@@ -41,7 +39,7 @@ class Header extends React.Component {
   onClick(e, screen) {
     e.preventDefault();
     const {dispatch} = this.props;
-    dispatch(setScreen(screen));
+    dispatch(actions.setScreen(screen));
   }
 
   renderLogo() {

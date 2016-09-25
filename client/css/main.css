@@ -195,7 +195,7 @@ body .bottomLine {
   border-top: 1px solid white;
 }
 body .aboutScreen {
-  padding-top: 250px;
+  padding-top: 100px;
   z-index: 0;
   color: white;
   font-family: 'Noto Sans';
@@ -204,7 +204,9 @@ body .aboutScreen {
   text-align: justify;
 }
 body .faqScreen {
-  color: red;
+  padding-top: 100px;
+  z-index: 0;
+  color: white;
   font-family: 'Noto Sans';
   text-decoration: none;
   margin: 10px;
@@ -221,4 +223,22 @@ body .faqScreen {
 }
 .display {
   display: inherit;
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }

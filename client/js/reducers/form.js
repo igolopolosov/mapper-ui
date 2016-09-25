@@ -1,5 +1,7 @@
 export default (state = {}, action) => {
   switch (action.type) {
+    case 'CLEAR':
+      return {};
     case 'SET_TEMPLATE_FILE':
       return {
         ...state,
