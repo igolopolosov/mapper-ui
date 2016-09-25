@@ -39,11 +39,11 @@ class InputForm extends React.Component {
   }
 
   resetTemplateFile() {
-    this.props.dispatch(actions.resetTemplateFile());
+    this.props.dispatch(formActions.resetTemplateFile());
   }
 
   resetDataFile() {
-    this.props.dispatch(actions.resetDataFile());
+    this.props.dispatch(formActions.resetDataFile());
   }
 
   submit() {
@@ -66,6 +66,30 @@ class InputForm extends React.Component {
     api.sendData(templateFile, dataFile, onUploadProgress, onDownloadProgress, onComplete);
   }
 
+  dropzoneContent(templateFile, dataFile) {
+    const hasTemplate = templateFile !== undefined;
+    const hasData = dataFile !== undefined;
+    return (
+      <div className="dropCircle animated display">
+
+        <div className="noneLoad">
+          <div className={hasTemplate ? '' : 'tlpNot'}>
+            {hasTemplate
+              ? <p>Шаблон:<br/>{templateFile.name}</p>
+              : <p>Перетащите<br/>шаблон ({templateFiletypes.join(',')})</p>
+            }
+          </div>
+          <div className={hasData ? '' : 'dictNot'}>
+            {hasData
+              ? <p>Данные:<br/>{dataFile.name}</p>
+              : <p>Перетащите<br/>данные ({dataFiletypes.join(',')})</p>
+            }
+          </div>
+        </div>
+     </div>
+   );
+  }
+
   render() {
     const {templateFile, dataFile} = this.props;
     const isReadyToSubmit = templateFile !== undefined && dataFile !== undefined;
@@ -74,16 +98,16 @@ class InputForm extends React.Component {
         <FileStatus file={templateFile} label='Template file: ' reset={this.resetTemplateFile.bind(this)} />
         <FileStatus file={dataFile} label='Data file: ' reset={this.resetDataFile.bind(this)}/>
 
+        <Dropzone
+            className='dropCircleWrapper'
+            activeClassName='dropCircleWrapperHover'
+            onDrop={this.onFileDrop.bind(this)}>
+              {this.dropzoneContent(templateFile, dataFile)}
+        </Dropzone>
+
         {isReadyToSubmit
           ? <button onClick={this.submit.bind(this)}>Отправить</button>
-          : <Dropzone
-            onDrop={this.onFileDrop.bind(this)}>
-            <div>
-              Drop template file ({templateFiletypes.join(',')})
-              and data file ({dataFiletypes.join(',')})
-            </div>
-          </Dropzone>
-        }
+          : ''}
       </div>
     );
   }
