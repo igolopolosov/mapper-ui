@@ -4,6 +4,8 @@ body {
   min-width: 500px;
   min-height: 560px;
   overflow: hidden;
+  height: 100vh;
+  margin: 0;
 }
 body nav {
   position: fixed;
@@ -110,7 +112,6 @@ body .dropCircleWrapper .dropCircle .noneLoad {
   width: 275px;
   height: 275px;
   box-shadow: 0 0 70px 10px #32576d;
-  margin-top: 160px;
   transition: all 0.4s ease-in-out;
 }
 body .dropCircleWrapper .dropCircle .noneLoad .tlpNot {
