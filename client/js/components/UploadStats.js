@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {saveAs} from 'file-saver';
 
 import Progress from './Progress';
 
@@ -23,12 +24,19 @@ const App = ({upload}) => {
       return (
         <div>
           :)
+          <button onClick={e => {
+            e.preventDefault();
+            saveAs(upload.data, "documents.zip");
+          }}>
+            Save
+          </button>
         </div>
       );
     default:
       return (
         <div>
           :(
+          {upload.error}
         </div>
       );
   }

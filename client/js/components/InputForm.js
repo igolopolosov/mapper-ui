@@ -53,8 +53,13 @@ class InputForm extends React.Component {
       dispatch(uploadActions.updateUploadProgress(progress));
     const onDownloadProgress = progress =>
       dispatch(uploadActions.updateDownloadProgress(progress));
-    const onComplete = ok => {
-      dispatch(uploadActions.finishUpload());
+    const onComplete = result => {
+      if (result.data !== undefined) {
+        dispatch(uploadActions.finishUpload(result.data));
+      }
+      else {
+        dispatch(uploadActions.error(result.error || 'Unknown error'));
+      }
       console.log(ok ? ':)' : ':(');
     }
 

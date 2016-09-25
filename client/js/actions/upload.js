@@ -12,7 +12,12 @@ export const updateDownloadProgress = progress => ({
   progress
 });
 
-export const finishUpload = progress => ({
+export const finishUpload = data => ({
   type: 'FINISH_UPLOAD',
-  progress
+  data
+});
+
+export const error = error => ({
+  type: 'ERROR',
+  error
 });

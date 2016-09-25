@@ -14,7 +14,13 @@ export default (state = {}, action) => {
       };
     case 'FINISH_UPLOAD':
       return {
-        state: 'FINISHED'
+        state: 'FINISHED',
+        data: action.data
+      };
+    case 'ERROR':
+      return {
+        state: 'ERROR',
+        error: action.errog
       };
     default:
       return state;

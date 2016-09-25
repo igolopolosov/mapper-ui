@@ -17,16 +17,21 @@ export const sendData = (readyTpl, readyData, onUploadProgress, onDownloadProgre
   xhr.onload = xhr.onerror = () => {
     console.log(xhr);
     if (xhr.status == 200) {
-      console.log("OK")
-      onComplete(true);
+      console.log("OK");
+      onComplete({
+        data: xhr.response
+      });
     }
     else {
       console.log("Error");
-      onComplete(false);
+      onComplete({
+        error: xhr.response || 'Response status: ' + xhr.status
+      });
     }
   }
 
   xhr.open("POST", url, true);
+  xhr.responseType = "blob";
   const formData = new FormData();
   formData.set('tpl', readyTpl, readyTpl.name);
   formData.set('dict', readyData, readyData.name);
