@@ -1,16 +1,12 @@
 'use strict';
 
-// attention catcher
-
-var tlpNot = document.querySelector('.tlpNot'),
-    dictNot = document.querySelector('.dictNot');
-
-var tlpNotBlink = setInterval(function () {
-  tlpNot.classList.toggle('toBlink');
-}, 1000);
-var dictNotBlink = setInterval(function () {
-  dictNot.classList.toggle('toBlink');
-}, 1000);
+// // attention catcher
+//
+// let tlpNot = document.querySelector('.tlpNot'),
+//     dictNot = document.querySelector('.dictNot');
+//
+// let tlpNotBlink = setInterval( function() {tlpNot.classList.toggle('toBlink')}, 1000);
+// let dictNotBlink = setInterval( function() {dictNot.classList.toggle('toBlink')}, 1000);
 
 // uploadAnimation
 var upload = function upload() {
@@ -29,52 +25,55 @@ var upload = function upload() {
   }, 800);
 };
 
-// menu change
-document.getElementById('try').focus();
-
-var menuContents = {
-  try: document.querySelector('.dropCircle'),
-  about: document.querySelector('.aboutScreen'),
-  faq: document.querySelector('faqScreen')
-};
-
-var inFocus = {
-  try: true,
-  about: false,
-  faq: false
-};
-
-var replaceClass = function replaceClass(element, it, withIt, addAfter300) {
-  element.className = element.className.replace(it, withIt);
-  setTimeout(function () {
-    addClass(element, ' ' + addAfter300); // написать тренарный иф
-  }, 300);
-};
-
-var addClass = function addClass(element, it) {
-  element.className = element.className + it;
-};
-
-var changeScreen = function changeScreen(id) {
-
-  for (var _id in inFocus) {
-    if (inFocus[_id] === _id) {
-      return;
-    } else if (inFocus[_id]) {
-      inFocus[_id] = false;
-      replaceClass(menuContents[_id], ' display', ' fadeOutLeft', ' displayNone');
-    }
-  }
-
-  if (id === 'try') {
-
-    replaceClass(menuContents[id], ' displayNone', '', 'display');
-    addClass(menuContents[id], ' fadeInLeft');
-    inFocus[id] = true;
-  } else {
-
-    replaceClass(menuContents[id], ' displayNone', '', 'display');
-    addClass(menuContents[id], ' fadeInRight');
-    inFocus[id] = true;
-  }
-};
+// // menu change
+// document.getElementById('try').focus();
+//
+// let menuContents = {
+//   try: document.querySelector('.dropCircle'),
+//   about: document.querySelector('.aboutScreen'),
+//   faq: document.querySelector('faqScreen')
+// }
+//
+// let inFocus = {
+//   try: true,
+//   about: false,
+//   faq: false
+// }
+//
+// let replaceClass = (element, it, withIt, addAfter300) => {
+//   element.className = element.className.replace(it, withIt);
+//   setTimeout( () => {
+//     addClass(element, ` ${addAfter300}`);// написать тренарный иф
+//   }, 300);
+// }
+//
+// let addClass = (element, it) => {
+//   element.className = element.className + it;
+// }
+//
+// let changeScreen = id => {
+//
+//   for (let id in inFocus) {
+//     if (inFocus[id] === id) {
+//       return;
+//     } else if (inFocus[id]) {
+//       inFocus[id] = false;
+//       replaceClass(menuContents[id], ' display', ' fadeOutLeft',' displayNone');
+//     }
+//   }
+//
+//   if (id === 'try') {
+//
+//     replaceClass(menuContents[id], ' displayNone', '', 'display');
+//     addClass(menuContents[id], ' fadeInLeft');
+//     inFocus[id] = true;
+//
+//   } else {
+//
+//     replaceClass(menuContents[id], ' displayNone', '', 'display');
+//     addClass(menuContents[id], ' fadeInRight');
+//     inFocus[id] = true;
+//
+//   }
+//
+// }
