@@ -1,3 +1,7 @@
+export const clear = () => ({
+  type: 'CLEAR'
+});
+
 export const setTemplateFile = file => ({
   type: 'SET_TEMPLATE_FILE',
   file

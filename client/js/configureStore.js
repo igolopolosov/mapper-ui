@@ -2,6 +2,7 @@ import {createStore, combineReducers} from 'redux';
 
 import form from './reducers/form';
 import upload from './reducers/upload';
+import screen from './reducers/screen';
 
 const addLoggingToDispatch = (store) => {
   /* eslint-disable no-console */
@@ -25,7 +26,8 @@ const addLoggingToDispatch = (store) => {
 export default () => {
   const reducer = combineReducers({
     form,
-    upload
+    upload,
+    screen
   });
   const store = createStore(
     reducer
