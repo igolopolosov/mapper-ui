@@ -25,7 +25,8 @@ const addLoggingToDispatch = (store) => {
 export default () => {
   const reducer = combineReducers({
     form,
-    upload
+    upload,
+    screen
   });
   const store = createStore(
     reducer

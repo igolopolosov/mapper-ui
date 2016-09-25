@@ -17,7 +17,7 @@ export const sendData = (readyTpl, readyData, onUploadProgress, onDownloadProgre
   xhr.onload = xhr.onerror = () => {
     console.log(xhr);
     if (xhr.status == 200) {
-      console.log("OK");
+      console.log("OK");      
       onComplete({
         data: xhr.response
       });
