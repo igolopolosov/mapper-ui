@@ -122,158 +122,148 @@ body {
      flex-direction: column;
      height: 100%;
 
-   .dropCircle {
+  // .dropCircleWrapperActive {
+  //     .dropCircleWrapper;
 
-     font-family: 'Noto Sans', serif;
-     color: white;
-     text-shadow: 0 0 2px #235158;
-     text-align: center;
-     cursor: default;
-     user-select: none;
-     -webkit-user-select: none;
+       .dropCircle {
 
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-
-     min-height: 100%;
-
-     .noneLoad {
-       border-radius: 50%;
-       border-top: @tbBorderS double @tbBorderC;
-       border-bottom: @tbBorderS double #345a71;
-       border-left: @lrBorderS double @lrBorderC;
-       border-right: @lrBorderS double @lrBorderC;
-       //
-      //  position: absolute;
-      //  top: 50%;
-      //  left: 50%;
-
-       display: flex;
-       //align-items: center;
-
-       width: @circleSize;
-       height: @circleSize;
-       //
-      //  margin-top: -(@circleSize / 2 + 5);
-      //  margin-left: -(@circleSize / 2 + 5);
-
-       box-shadow: 0 0 70px 10px #32576d;
-
-      //margin-top: 160px;
-      transition: all 0.4s ease-in-out;
-
-       .tlpNot {
-         background: @textBackColor;
-
-         width: 50%;
-         height: 100%;
-
-         border-top-left-radius: @circleInsideRadius;
-         border-bottom-left-radius: @circleInsideRadius;
-
-         align-self: stretch;
-
-         transition: all 1s linear;
-
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-       }
-
-       .dictNot {
-         background: @textBackColor;
-
-         width: 50%;
-         height: 100%;
-
-         border-top-right-radius: @circleInsideRadius;
-         border-bottom-right-radius: @circleInsideRadius;
-
-         border-left: 3px solid @tbBorderC;//#5a7377;
-
-         transition: all 1s linear;
+         font-family: 'Noto Sans', serif;
+         color: white;
+         text-shadow: 0 0 2px #235158;
+         text-align: center;
+         cursor: default;
+         user-select: none;
+         -webkit-user-select: none;
 
          display: flex;
+         flex-direction: column;
          align-items: center;
          justify-content: center;
 
-       }
+         min-height: 100%;
+
+         .noneLoad {
+           border-radius: 50%;
+           border-top: @tbBorderS double @tbBorderC;
+           border-bottom: @tbBorderS double #345a71;
+           border-left: @lrBorderS double @lrBorderC;
+           border-right: @lrBorderS double @lrBorderC;
+           //
+          //  position: absolute;
+          //  top: 50%;
+          //  left: 50%;
+           position: relative;
+           display: flex;
+           //align-items: center;
+
+           width: @circleSize;
+           height: @circleSize;
+           //
+          //  margin-top: -(@circleSize / 2 + 5);
+          //  margin-left: -(@circleSize / 2 + 5);
+
+           box-shadow: 0 0 70px 10px #32576d;
+
+          //margin-top: 160px;
+          transition: all 0.4s ease-in-out;
+
+           .tlp {
+             background: @textBackColor;
+
+             width: 50%;
+             height: 100%;
+
+             border-top-left-radius: @circleInsideRadius;
+             border-bottom-left-radius: @circleInsideRadius;
+
+             align-self: stretch;
+
+             transition: all 1s linear;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+           }
+
+           .dict {
+             background: @textBackColor;
+
+             width: 50%;
+             height: 100%;
+
+             border-top-right-radius: @circleInsideRadius;
+             border-bottom-right-radius: @circleInsideRadius;
+
+             border-left: 3px solid @tbBorderC;//#5a7377;
+
+             transition: all 1s linear;
+
+             display: flex;
+             align-items: center;
+             justify-content: center;
+
+           }
+         }
+
+         .noneLoadActive {
+           height: @circleSize + 20px;
+           width: @circleSize + 20px;
+          //  margin-top: -(@circleSize / 2 + 15);
+          //  margin-left: -(@circleSize / 2 + 15);
+
+           border-top: (@tbBorderS + 5) double @tbBorderC;
+           border-bottom: (@tbBorderS + 5) double #345a71;
+           border-left: (@lrBorderS + 5) double @lrBorderC;
+           border-right: (@lrBorderS + 5) double @lrBorderC;
+         }
+
+         .noneLoadActive .dictNot {
+           border-top-right-radius: @circleInsideRadius + 25;
+           border-bottom-right-radius: @circleInsideRadius + 25;
+         }
+         .noneLoadActive .tlpNot {
+           border-top-left-radius: @circleInsideRadius + 25;
+           border-bottom-left-radius: @circleInsideRadius + 25;
+         }
+
+         .noneLoadActive .dictNot p,
+         .noneLoadActive .tlpNot p {
+           font-size: 17px;
+           transition: font-size 0.6s linear;
+         }
+         // noneBoth end
+   } // dropCicle
+
+   .submitFiles {
+     width: 85px;
+     height: 85px;
+     background: linear-gradient(to bottom right, #4a738c, #2b5167);
+     border-radius: 50%;
+     color: white;
+
+     margin-left: 29%;
+
+     display: flex;
+     align-content: center;
+     justify-content: center;
+     border: 4px solid @lrBorderC;
+
+     box-shadow: 0 0 35px 10px #32576d;
+
+     position: absolute;
+
+     bottom: -75px;
+     right: -80px;
+
+     span {
+       align-self: center;
+       font-size: 15px;
      }
-
-     .noneLoad:hover {
-       height: @circleSize + 20px;
-       width: @circleSize + 20px;
-      //  margin-top: -(@circleSize / 2 + 15);
-      //  margin-left: -(@circleSize / 2 + 15);
-
-       border-top: (@tbBorderS + 5) double @tbBorderC;
-       border-bottom: (@tbBorderS + 5) double #345a71;
-       border-left: (@lrBorderS + 5) double @lrBorderC;
-       border-right: (@lrBorderS + 5) double @lrBorderC;
-     }
-
-     .noneLoad:hover .dictNot {
-       border-top-right-radius: @circleInsideRadius + 25;
-       border-bottom-right-radius: @circleInsideRadius + 25;
-     }
-     .noneLoad:hover .tlpNot {
-       border-top-left-radius: @circleInsideRadius + 25;
-       border-bottom-left-radius: @circleInsideRadius + 25;
-     }
-
-     .noneLoad:hover .dictNot p,
-     .noneLoad:hover .tlpNot p {
-       font-size: 17px;
-       transition: font-size 0.6s linear;
-     }
-     // noneBoth end
-
-     .tlpLoad {
-       display: none;
-
-       border-radius: 50%;
-       border-top: 30px double black;
-       border-bottom: 30px double black;
-       border-left: 30px double green;
-       border-right: 30px double grey;
-
-       position: absolute;
-       top: 50%;
-       left: 50%;
-
-       width: 200px;
-       height: 200px;
-
-       margin-top: -130px;
-       margin-left: -130px;
-     }
-
-     .dictLoad {
-       display: none;
-
-       border-radius: 50%;
-       border-top: 30px double black;
-       border-bottom: 30px double black;
-       border-left: 30px double grey;
-       border-right: 30px double green;
-
-       position: absolute;
-       top: 50%;
-       left: 50%;
-
-       width: @circleSize;
-       height: @circleSize;
-
-       margin-top: -130px;
-       margin-left: -130px;
-     }
+   }
 
    }
-   }
+
 
    .bottomLine {
      position:fixed;
@@ -304,8 +294,8 @@ body {
      margin: 10px;
      text-align: justify;
    }
-}
 
+}
 // animations
 .toBlink {
   background: @textBackAnim !important;
@@ -321,4 +311,4 @@ body {
 
 .display {
   display: inherit;
-}
+ }
