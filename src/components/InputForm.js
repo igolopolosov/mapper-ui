@@ -5,7 +5,6 @@ import {saveAs} from 'file-saver';
 
 import * as uploadActions from '../actions/upload';
 import * as formActions from '../actions/form';
-import FileStatus from './FileStatus';
 import * as api from '../api/api';
 
 const templateFiletypes = [
@@ -77,7 +76,6 @@ class InputForm extends React.Component {
   }
 
   dropzoneContent(templateFile, dataFile) {
-    const isReadyToSubmit = templateFile !== undefined && dataFile !== undefined;
     const hasTemplate = templateFile !== undefined;
     const hasData = dataFile !== undefined;
     return (

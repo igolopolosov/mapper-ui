@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Header from './Header';
 import Home from './Home';
@@ -16,11 +16,11 @@ const App = ({screen}) => (
   <div>
     <Header />
 
-      {screen == 'HOME' ? <Home key='HOME' /> : ''}
+      {screen === 'HOME' ? <Home key='HOME' /> : ''}
 
-      {screen == 'ABOUT' ? <About key='ABOUT' /> : ''}
+      {screen === 'ABOUT' ? <About key='ABOUT' /> : ''}
 
-      {screen == 'FAQ' ? <FAQ key='FAQ' /> : ''}
+      {screen === 'FAQ' ? <FAQ key='FAQ' /> : ''}
 
   </div>
 );

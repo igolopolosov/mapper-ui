@@ -30,8 +30,8 @@ class Header extends React.Component {
 
   componentWillUpdate() {
     const uploadState = this.props.upload.state;
-    const isLoading = uploadState == 'UPLOAD' || uploadState == 'DOWNLOAD';
-    if (!isLoading && this.state.count != 0) {
+    const isLoading = uploadState === 'UPLOAD' || uploadState === 'DOWNLOAD';
+    if (!isLoading && this.state.count !== 0) {
       this.setState({count: 0});
     }
   }
@@ -45,7 +45,7 @@ class Header extends React.Component {
   renderLogo() {
     const {count} = this.state;
     const uploadState = this.props.upload.state;
-    const isLoading = uploadState == 'UPLOAD' || uploadState == 'DOWNLOAD';
+    const isLoading = uploadState === 'UPLOAD' || uploadState === 'DOWNLOAD';
     return LOGO.map((a, i) => <span key={i} className={isLoading && count >= i && count < LOGO.length + i ? 'load' : ''}>{a}</span>);
   }
 
