@@ -1,20 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
-// import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Header from './Header';
 import Home from './Home';
 import About from './About';
 import FAQ from './FAQ';
 
-// <ReactCSSTransitionGroup
-//   transitionName="example"
-//   transitionEnterTimeout={50000}
-//   transitionLeaveTimeout={30000}>
-
 const App = ({screen}) => (
   <div>
     <Header />
+    <ReactCSSTransitionGroup
+      transitionName='example'
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={300}>
 
       {screen === 'HOME' ? <Home key='HOME' /> : ''}
 
@@ -22,9 +21,10 @@ const App = ({screen}) => (
 
       {screen === 'FAQ' ? <FAQ key='FAQ' /> : ''}
 
+    </ReactCSSTransitionGroup>
   </div>
 );
-// </ReactCSSTransitionGroup>
+
 
 export default connect(
   state => ({

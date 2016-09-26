@@ -195,6 +195,7 @@ body .bottomLine {
   border-top: 1px solid white;
 }
 body .aboutScreen {
+  position: fixed;
   padding-top: 100px;
   z-index: 0;
   color: white;
@@ -204,6 +205,7 @@ body .aboutScreen {
   text-align: justify;
 }
 body .faqScreen {
+  position: fixed;
   padding-top: 100px;
   z-index: 0;
   color: white;
