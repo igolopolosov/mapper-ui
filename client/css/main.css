@@ -242,3 +242,10 @@ body .faqScreen {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
+
+.status {
+  color: white;
+  font-size: 20px;
+  font-family: 'Noto Sans';
+  text-decoration: none;
+}

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Header from './Header';
-import InputForm from './InputForm';
+import Home from './Home';
 import About from './About';
 import FAQ from './FAQ';
 
@@ -16,7 +16,7 @@ const App = ({screen}) => (
   <div>
     <Header />
 
-      {screen == 'HOME' ? <InputForm key='HOME' /> : ''}
+      {screen == 'HOME' ? <Home key='HOME' /> : ''}
 
       {screen == 'ABOUT' ? <About key='ABOUT' /> : ''}
 
