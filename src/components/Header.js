@@ -49,39 +49,12 @@ class Header extends React.Component {
     return LOGO.map((a, i) => <span key={i} className={isLoading && count >= i && count < LOGO.length + i ? 'load' : ''}>{a}</span>);
   }
 
-  renderStatus() {
-    const {state, progress} = this.props.upload;
-    const percentage = progress ? (progress * 100).toFixed(0) : '';
-    switch (state) {
-      case 'UPLOAD':
-        if (progress < 1) {
-          return <div>Отправка... {percentage}%</div>
-        }
-        else {
-          return <div>Обработка...</div>
-        }
-      case 'DOWNLOAD':
-        if (progress > 0) {
-          return <div>Загрузка результата... {percentage}%</div>
-        }
-        else {
-          return <div>Обработка...</div>
-        }
-      default:
-        return <div></div>;
-    }
-  }
-
   render() {
     return (
       <nav>
         <div className="logo">
           <span className="icon-sitemap"></span>
           <span className="logo__title">{this.renderLogo()}</span>
-        </div>
-
-        <div className="status">
-          {this.renderStatus()}
         </div>
 
         <div className="links">

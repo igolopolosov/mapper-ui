@@ -14,24 +14,25 @@ const dataFiletypes = [
   'csv', 'json'
 ];
 
-class InputForm extends React.Component {
-  checkFiletype(filename, types) {
-    return undefined !== types.find((type) =>
-      filename.endsWith(type)
-    );
-  }
+const checkFiletype = (filename, types) => {
+  return undefined !== types.find((type) =>
+    filename.endsWith(type)
+  );
+}
 
-  onFileDrop(files) {
+class InputForm extends React.Component {
+
+  onFileDrop = files => {
     // HACK
     var {templateFile, dataFile} = this.props.form;
     const {dispatch} = this.props;
     files.forEach((file) => {
-      if (this.checkFiletype(file.name, templateFiletypes)) {
+      if (checkFiletype(file.name, templateFiletypes)) {
         console.log('Template file: ', file);
         templateFile = file;
         dispatch(formActions.setTemplateFile(file));
       }
-      else if (this.checkFiletype(file.name, dataFiletypes)) {
+      else if (checkFiletype(file.name, dataFiletypes)) {
         console.log('Data file: ', file);
         dataFile = file;
         dispatch(formActions.setDataFile(file));
@@ -46,15 +47,15 @@ class InputForm extends React.Component {
     }
   }
 
-  resetTemplateFile() {
+  resetTemplateFile = () => {
     this.props.dispatch(formActions.resetTemplateFile());
   }
 
-  resetDataFile() {
+  resetDataFile = () => {
     this.props.dispatch(formActions.resetDataFile());
   }
 
-  submit(templateFile, dataFile) {
+  submit = (templateFile, dataFile) => {
     const {dispatch} = this.props;
 
     const onUploadProgress = progress =>
@@ -75,12 +76,37 @@ class InputForm extends React.Component {
     api.sendData(templateFile, dataFile, onUploadProgress, onDownloadProgress, onComplete);
   }
 
-  dropzoneContent(templateFile, dataFile) {
+  renderStatus = () => {
+    const {state, progress} = this.props.upload;
+    const percentage = progress ? (progress * 100).toFixed(0) : '';
+    switch (state) {
+      case 'UPLOAD':
+        if (progress < 1) {
+          return <div>Отправка... {percentage}%</div>
+        }
+        else {
+          return <div>Обработка...</div>
+        }
+      case 'DOWNLOAD':
+        if (progress > 0) {
+          return <div>Загрузка результата... {percentage}%</div>
+        }
+        else {
+          return <div>Обработка...</div>
+        }
+      default:
+        return null;
+    }
+  }
+
+  dropzoneContent = (templateFile, dataFile) => {
+    const uploadState = this.props.upload.state;
+    const isLoading = uploadState === 'UPLOAD' || uploadState === 'DOWNLOAD';
     const hasTemplate = templateFile !== undefined;
     const hasData = dataFile !== undefined;
     return (
       <div className="dropCircle animated display">
-        <div className="noneLoad">
+        <div className={'noneLoad' + (isLoading ? ' blur' : '')}>
           <div className='tlp' style={hasTemplate ? {background: '#477089'} : {}}>
             {hasTemplate
               ? <p>Шаблон:<br/>{templateFile.name}</p>
@@ -94,6 +120,9 @@ class InputForm extends React.Component {
             }
           </div>
         </div>
+        <div className='status'>
+          {this.renderStatus()}
+        </div>
      </div>
    );
   }
@@ -105,7 +134,7 @@ class InputForm extends React.Component {
         <Dropzone
             className='dropCircleWrapper'
             activeClassName='dropCircleWrapperActive'
-            onDrop={this.onFileDrop.bind(this)}>
+            onDrop={this.onFileDrop}>
               {this.dropzoneContent(templateFile, dataFile)}
         </Dropzone>
       </div>

@@ -93,6 +93,10 @@ body .dropCircleWrapperActive {
   flex-direction: column;
   height: 100%;
 }
+body .blur {
+  filter: blur(10px);
+  -webkit-filter:  blur(10px);
+}
 body .dropCircleWrapper .dropCircle {
   font-family: 'Noto Sans', serif;
   color: white;
@@ -246,6 +250,7 @@ body .faqScreen {
 }
 
 .status {
+  position: fixed;
   color: white;
   font-size: 20px;
   font-family: 'Noto Sans';
