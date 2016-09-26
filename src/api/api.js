@@ -33,7 +33,7 @@ export const sendData = (readyTpl, readyData, onUploadProgress, onDownloadProgre
   xhr.open("POST", url, true);
   xhr.responseType = "blob";
   const formData = new FormData();
-  formData.set('tpl', readyTpl, readyTpl.name);
-  formData.set('dict', readyData, readyData.name);
+  formData.append('tpl', readyTpl, readyTpl.name);
+  formData.append('dict', readyData, readyData.name);
   xhr.send(formData);
 };
