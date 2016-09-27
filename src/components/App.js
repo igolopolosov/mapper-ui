@@ -1,13 +1,13 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import Header from './Header';
 import Home from './Home';
 import About from './About';
 import FAQ from './FAQ';
 
-const App = ({screen}) => (
+const App = ({children, location}) => (
   <div>
     <Header />
     <ReactCSSTransitionGroup
@@ -15,19 +15,20 @@ const App = ({screen}) => (
       transitionEnterTimeout={500}
       transitionLeaveTimeout={300}>
 
-      {screen === 'HOME' ? <Home key='HOME' /> : ''}
-
-      {screen === 'ABOUT' ? <About key='ABOUT' /> : ''}
-
-      {screen === 'FAQ' ? <FAQ key='FAQ' /> : ''}
+      {React.cloneElement(children, {
+        key: location.pathname
+      })}
 
     </ReactCSSTransitionGroup>
   </div>
 );
 
-
-export default connect(
-  state => ({
-    screen: state.screen.id
-  })
-)(App);
+export default () => (
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={Home}/>
+      <Route path="about" component={About} />
+      <Route path="faq" component={FAQ} />
+    </Route>
+  </Router>
+);

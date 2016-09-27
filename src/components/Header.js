@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
-import * as actions from '../actions/screen';
+import {Link} from 'react-router';
 
 const LOGO="MAPPER".split("");
 const ANIMATION_TICK = 200;
@@ -36,12 +35,6 @@ class Header extends React.Component {
     }
   }
 
-  onClick(e, screen) {
-    e.preventDefault();
-    const {dispatch} = this.props;
-    dispatch(actions.setScreen(screen));
-  }
-
   renderLogo() {
     const {count} = this.state;
     const uploadState = this.props.upload.state;
@@ -58,9 +51,9 @@ class Header extends React.Component {
         </div>
 
         <div className="links">
-          <a href="#" onClick={e => this.onClick(e, "HOME")}>ПОПРОБОВАТЬ</a>
-          <a href="#" onClick={e => this.onClick(e, "ABOUT")}>О ПРОЕКТЕ</a>
-          <a href="#" onClick={e => this.onClick(e, "FAQ")}>F.A.Q</a>
+          <Link to='/'>ПОПРОБОВАТЬ</Link>
+          <Link to='/about'>О ПРОЕКТЕ</Link>
+          <Link to='/faq'>F.A.Q</Link>
         </div>
       </nav>
     );
@@ -69,7 +62,6 @@ class Header extends React.Component {
 
 export default connect(
   state => ({
-    screen: state.screen,
     upload: state.upload
   })
 )(Header);
