@@ -12,33 +12,35 @@ class Header extends React.Component {
       this.state = {count: 0};
   }
 
-  componentDidMount() {
-    var timer=setInterval(this.tick.bind(this), ANIMATION_TICK);
+  componentDidMount = () => {
+    var timer=setInterval(this.tick, ANIMATION_TICK);
     this.setState({timer});
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     clearInterval(this.state.timer);
   }
 
-  tick() {
-    var count = this.state.count || 0;
+  tick = () => {
+    var {count} = this.state;
     count = (count + 1) % (2 * LOGO.length);
     this.setState({count});
   }
 
-  componentWillUpdate() {
+  getIsLoading = () => {
     const uploadState = this.props.upload.state;
-    const isLoading = uploadState === 'UPLOAD' || uploadState === 'DOWNLOAD';
-    if (!isLoading && this.state.count !== 0) {
+    return uploadState === 'UPLOAD' || uploadState === 'DOWNLOAD';
+  }
+
+  componentWillUpdate = () => {
+    if (!this.getIsLoading() && this.state.count !== 0) {
       this.setState({count: 0});
     }
   }
 
-  renderLogo() {
+  renderLogo = () => {
     const {count} = this.state;
-    const uploadState = this.props.upload.state;
-    const isLoading = uploadState === 'UPLOAD' || uploadState === 'DOWNLOAD';
+    const isLoading = this.getIsLoading();
     return LOGO.map((a, i) => <span key={i} className={isLoading && count >= i && count < LOGO.length + i ? 'load' : ''}>{a}</span>);
   }
 
