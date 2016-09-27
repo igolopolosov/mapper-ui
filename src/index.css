@@ -93,6 +93,10 @@ body .dropCircleWrapperActive {
   flex-direction: column;
   height: 100%;
 }
+body .blur {
+  filter: blur(10px);
+  -webkit-filter:  blur(10px);
+}
 body .dropCircleWrapper .dropCircle {
   font-family: 'Noto Sans', serif;
   color: white;
@@ -195,6 +199,7 @@ body .bottomLine {
   border-top: 1px solid white;
 }
 body .aboutScreen {
+  position: fixed;
   padding-top: 100px;
   z-index: 0;
   color: white;
@@ -204,6 +209,7 @@ body .aboutScreen {
   text-align: justify;
 }
 body .faqScreen {
+  position: fixed;
   padding-top: 100px;
   z-index: 0;
   color: white;
@@ -244,6 +250,7 @@ body .faqScreen {
 }
 
 .status {
+  position: fixed;
   color: white;
   font-size: 20px;
   font-family: 'Noto Sans';
